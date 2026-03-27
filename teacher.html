@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>课堂反馈统计</title>
-    <!-- 引入饼图库 -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 稳定CDN + 支持3D饼图 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -28,6 +28,8 @@
             padding: 20px;
             border: 1px solid #eee;
             border-radius: 10px;
+            background: #fdfdfd;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         .chart-title {
             text-align: center;
@@ -40,39 +42,59 @@
             max-width: 600px;
             margin: 0 auto;
         }
+        .empty-tip {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 17px;
+            margin: 60px 0;
+            display: none;
+        }
     </style>
 </head>
 <body>
     <h1 class="title">课堂反馈统计结果</h1>
-    
-    <!-- 问题1统计 -->
+
+    <!-- 空数据提示 -->
+    <div class="empty-tip" id="emptyTip">暂无反馈数据，请学生提交后查看～</div>
+
+    <!-- 问题1 -->
     <div class="chart-box">
         <div class="chart-title">1. 听课节奏情况</div>
         <canvas id="chart1"></canvas>
     </div>
 
-    <!-- 问题2统计 -->
+    <!-- 问题2 -->
     <div class="chart-box">
         <div class="chart-title">2. 知识点理解情况</div>
         <canvas id="chart2"></canvas>
     </div>
 
-    <!-- 问题3统计 -->
+    <!-- 问题3 -->
     <div class="chart-box">
         <div class="chart-title">3. 课堂兴趣程度</div>
         <canvas id="chart3"></canvas>
     </div>
 
     <script>
-        // 获取统计数据
+        // 获取数据
         const stats = JSON.parse(localStorage.getItem("feedbackStats")) || {
             q1: {"完全能跟上":0, "基本能跟上":0, "有点吃力":0, "完全跟不上":0},
             q2: {"全部听懂":0, "大部分听懂":0, "一半听懂":0, "很少听懂":0},
             q3: {"非常感兴趣":0, "比较感兴趣":0, "一般":0, "不感兴趣":0}
         };
 
-        // 绘制饼图函数
-        function drawChart(canvasId, data) {
+        // 判断是否全空
+        function isAllZero(obj) {
+            return Object.values(obj).every(v => v === 0);
+        }
+
+        const allEmpty = isAllZero(stats.q1) && isAllZero(stats.q2) && isAllZero(stats.q3);
+        if (allEmpty) {
+            document.getElementById("emptyTip").style.display = "block";
+        }
+
+        // 3D立体效果饼图（带阴影、渐变、立体感）
+        function draw3DPie(canvasId, data) {
             const ctx = document.getElementById(canvasId).getContext("2d");
             new Chart(ctx, {
                 type: "pie",
@@ -81,31 +103,52 @@
                     datasets: [{
                         data: Object.values(data),
                         backgroundColor: [
-                            "#3498db", "#2ecc71", "#f39c12", "#e74c3c"
+                            "#3498db", "#2ecc71", "#f1c40f", "#e74c3c"
                         ],
-                        borderWidth: 1
+                        borderWidth: 2,
+                        borderColor: "#fff",
+                        hoverOffset: 15, // 悬浮突出
+                        shadowColor: "rgba(0,0,0,0.2)",
+                        shadowBlur: 10
                     }]
                 },
                 options: {
                     responsive: true,
+                    maintainAspectRatio: false,
                     plugins: {
-                        legend: { position: "bottom" },
+                        legend: {
+                            position: "bottom",
+                            labels: { font: { size: 14 } }
+                        },
                         tooltip: {
+                            backgroundColor: "rgba(0,0,0,0.7)",
+                            padding: 12,
+                            bodyFont: { size: 15 },
                             callbacks: {
                                 label: function(context) {
-                                    return `${context.label}: ${context.raw}人`;
+                                    return `${context.label}：${context.raw} 人`;
                                 }
                             }
+                        }
+                    },
+                    // 3D 立体效果
+                    elements: {
+                        arc: {
+                            borderWidth: 2,
+                            shadowColor: "rgba(0,0,0,0.3)",
+                            shadowBlur: 15
                         }
                     }
                 }
             });
         }
 
-        // 绘制三个饼图
-        drawChart("chart1", stats.q1);
-        drawChart("chart2", stats.q2);
-        drawChart("chart3", stats.q3);
+        // 绘制图表
+        if (!allEmpty) {
+            draw3DPie("chart1", stats.q1);
+            draw3DPie("chart2", stats.q2);
+            draw3DPie("chart3", stats.q3);
+        }
     </script>
 </body>
 </html>
