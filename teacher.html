@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>反馈统计</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:"Microsoft YaHei",sans-serif;background:#f5f5f5;padding:15px;}
+        .container{max-width:800px;margin:0 auto;background:#fff;padding:20px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.08);}
+        h1{text-align:center;margin-bottom:25px;color:#2c3e50;}
+        .box{margin-bottom:30px;padding:15px;border:1px solid #eee;border-radius:10px;}
+        canvas{height:300px !important;max-width:600px;margin:0 auto;}
+        .tip{text-align:center;padding:50px;color:#999;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>课堂反馈统计结果</h1>
+    <div id="tip" class="tip">加载中...</div>
+    
+    <div class="box" style="display:none" id="b1"><canvas id="c1"></canvas></div>
+    <div class="box" style="display:none" id="b2"><canvas id="c2"></canvas></div>
+    <div class="box" style="display:none" id="b3"><canvas id="c3"></canvas></div>
+</div>
+
+<script>
+let dt={
+    q1:{"完全能跟上":0,"基本能跟上":0,"有点吃力":0,"完全跟不上":0},
+    q2:{"全部听懂":0,"大部分听懂":0,"一半听懂":0,"很少听懂":0},
+    q3:{"非常感兴趣":0,"比较感兴趣":0,"一般":0,"不感兴趣":0}
+};
+
+async function load(){
+    try{
+        // 直接读取 Gist 数据
+        const res = await fetch("https://gist.githubusercontent.com/morefree988/67fca3c6acd6697a151f2a35/raw/feedback.json");
+        const data = await res.json();
+        
+        // 累加统计
+        dt.q1[data[1]]++;
+        dt.q2[data[2]]++;
+        dt.q3[data[3]]++;
+
+        document.getElementById("tip").style.display="none";
+        document.getElementById("b1").style.display="block";
+        document.getElementById("b2").style.display="block";
+        document.getElementById("b3").style.display="block";
+        
+        draw("c1", dt.q1);
+        draw("c2", dt.q2);
+        draw("c3", dt.q3);
+    }catch(e){
+        document.getElementById("tip").innerText="暂无数据，请提交反馈后刷新";
+        console.log(e);
+    }
+}
+
+function draw(id, data){
+    const ctx = document.getElementById(id).getContext("2d");
+    new Chart(ctx, {
+        type:"pie",
+        data:{
+            labels:Object.keys(data),
+            datasets:[{
+                data:Object.values(data),
+                backgroundColor:["#3498db","#2ecc71","#f1c40f","#e74c3c"],
+                borderWidth:2, hoverOffset:15
+            }]
+        },
+        options:{
+            responsive:true, maintainAspectRatio:false,
+            plugins:{
+                legend:{position:"bottom"},
+                tooltip:{callbacks:{label:ctx=>`${ctx.label}：${ctx.raw}人`}}
+            }
+        }
+    });
+}
+
+load();
+</script>
+</body>
+</html>
