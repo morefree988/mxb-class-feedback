@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课堂反馈</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:"Microsoft YaHei",sans-serif;background:#f5f5f5;padding:15px;}
+        .container{max-width:600px;margin:0 auto;background:#fff;padding:20px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.05);}
+        h1{text-align:center;font-size:22px;margin-bottom:20px;color:#333;}
+        .item{margin-bottom:20px;}
+        .q{font-weight:bold;margin-bottom:10px;color:#444;}
+        .opt{display:block;width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;margin:8px 0;background:#fff;cursor:pointer;transition:.3s;}
+        .opt:hover{border-color:#3498db;background:#f8f9fa;}
+        .opt.selected{background:#3498db;color:#fff;border-color:#2980b9;}
+        .btn{display:block;width:100%;padding:15px;border:none;border-radius:10px;background:#27ae60;color:#fff;font-size:16px;margin-top:20px;cursor:pointer;}
+        .tip{text-align:center;margin-top:15px;color:#27ae60;display:none;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>课堂学习情况反馈</h1>
+    
+    <div class="item">
+        <div class="q">1. 听课节奏情况</div>
+        <div class="opt" onclick="sel(1,this)">完全能跟上</div>
+        <div class="opt" onclick="sel(1,this)">基本能跟上</div>
+        <div class="opt" onclick="sel(1,this)">有点吃力</div>
+        <div class="opt" onclick="sel(1,this)">完全跟不上</div>
+    </div>
+
+    <div class="item">
+        <div class="q">2. 知识点理解情况</div>
+        <div class="opt" onclick="sel(2,this)">全部听懂</div>
+        <div class="opt" onclick="sel(2,this)">大部分听懂</div>
+        <div class="opt" onclick="sel(2,this)">一半听懂</div>
+        <div class="opt" onclick="sel(2,this)">很少听懂</div>
+    </div>
+
+    <div class="item">
+        <div class="q">3. 课堂兴趣程度</div>
+        <div class="opt" onclick="sel(3,this)">非常感兴趣</div>
+        <div class="opt" onclick="sel(3,this)">比较感兴趣</div>
+        <div class="opt" onclick="sel(3,this)">一般</div>
+        <div class="opt" onclick="sel(3,this)">不感兴趣</div>
+    </div>
+
+    <button class="btn" onclick="sub()">提 交 反 馈</button>
+    <div class="tip" id="ok">✅ 提交成功！老师正在查看结果</div>
+</div>
+
+<script>
+let ans={1:"",2:"",3:""};
+function sel(n,t){
+    let p=t.parentElement.querySelectorAll(".opt");
+    p.forEach(o=>o.classList.remove("selected"));
+    t.classList.add("selected");
+    ans[n]=t.innerText;
+}
+
+async function sub(){
+    if(!ans[1]||!ans[2]||!ans[3]){alert("请完成所有题目！");return;}
+    
+    // 这里替换成你自己的腾讯问卷链接
+    window.location.href = "https://wj.qq.com/s2/26138619/4abe/?q1=" + encodeURIComponent(ans[1]) + "&q2=" + encodeURIComponent(ans[2]) + "&q3=" + encodeURIComponent(ans[3]);
+}
+</script>
+</body>
+</html>
