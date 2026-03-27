@@ -34,14 +34,29 @@ let dt={
 
 async function load(){
     try{
-        // 直接读取 Gist 数据
-        const res = await fetch("https://gist.githubusercontent.com/morefree988/67fca3c6acd6697a151f2a35/raw/feedback.json");
+        // 直接读取云端统计好的数据
+        const res = await fetch("https://jsonbox.io/box_67fca3c6acd6697a151f2a35/count");
         const data = await res.json();
         
-        // 累加统计
-        dt.q1[data[1]]++;
-        dt.q2[data[2]]++;
-        dt.q3[data[3]]++;
+        // 如果没有统计数据，就从原始数据里计算
+        if(!data || Object.keys(data).length === 0){
+            const listRes = await fetch("https://jsonbox.io/box_67fca3c6acd6697a151f2a35");
+            const list = await listRes.json();
+            list.forEach(item => {
+                if(item.q1) dt.q1[item.q1]++;
+                if(item.q2) dt.q2[item.q2]++;
+                if(item.q3) dt.q3[item.q3]++;
+            });
+        } else {
+            dt = data;
+        }
+
+        // 判断是否有数据
+        const isAllZero = (obj) => Object.values(obj).every(v => v === 0);
+        if(isAllZero(dt.q1) && isAllZero(dt.q2) && isAllZero(dt.q3)){
+            document.getElementById("tip").innerText="暂无数据，请提交反馈后刷新";
+            return;
+        }
 
         document.getElementById("tip").style.display="none";
         document.getElementById("b1").style.display="block";
