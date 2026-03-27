@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课堂反馈统计</title>
+    <!-- 引入饼图库 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .title {
+            text-align: center;
+            margin: 20px 0;
+            color: #2c3e50;
+        }
+        .chart-box {
+            margin: 40px 0;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+        }
+        .chart-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #34495e;
+        }
+        canvas {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">课堂反馈统计结果</h1>
+    
+    <!-- 问题1统计 -->
+    <div class="chart-box">
+        <div class="chart-title">1. 听课节奏情况</div>
+        <canvas id="chart1"></canvas>
+    </div>
+
+    <!-- 问题2统计 -->
+    <div class="chart-box">
+        <div class="chart-title">2. 知识点理解情况</div>
+        <canvas id="chart2"></canvas>
+    </div>
+
+    <!-- 问题3统计 -->
+    <div class="chart-box">
+        <div class="chart-title">3. 课堂兴趣程度</div>
+        <canvas id="chart3"></canvas>
+    </div>
+
+    <script>
+        // 获取统计数据
+        const stats = JSON.parse(localStorage.getItem("feedbackStats")) || {
+            q1: {"完全能跟上":0, "基本能跟上":0, "有点吃力":0, "完全跟不上":0},
+            q2: {"全部听懂":0, "大部分听懂":0, "一半听懂":0, "很少听懂":0},
+            q3: {"非常感兴趣":0, "比较感兴趣":0, "一般":0, "不感兴趣":0}
+        };
+
+        // 绘制饼图函数
+        function drawChart(canvasId, data) {
+            const ctx = document.getElementById(canvasId).getContext("2d");
+            new Chart(ctx, {
+                type: "pie",
+                data: {
+                    labels: Object.keys(data),
+                    datasets: [{
+                        data: Object.values(data),
+                        backgroundColor: [
+                            "#3498db", "#2ecc71", "#f39c12", "#e74c3c"
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: "bottom" },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.raw}人`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // 绘制三个饼图
+        drawChart("chart1", stats.q1);
+        drawChart("chart2", stats.q2);
+        drawChart("chart3", stats.q3);
+    </script>
+</body>
+</html>

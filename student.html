@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课堂反馈系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .title {
+            text-align: center;
+            margin: 20px 0;
+            color: #2c3e50;
+        }
+        .question {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+        }
+        .q-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #34495e;
+        }
+        .option {
+            display: block;
+            margin: 12px 0;
+            padding: 10px;
+            border: 1px solid #bdc3c7;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .option:hover {
+            background-color: #f8f9fa;
+        }
+        .option.selected {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            margin: 40px 0;
+            cursor: pointer;
+        }
+        .submit-btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        .success {
+            text-align: center;
+            color: #27ae60;
+            font-size: 20px;
+            margin: 20px 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">课堂学习情况反馈</h1>
+    
+    <!-- 问题1 -->
+    <div class="question">
+        <div class="q-title">1. 本节课你能跟上老师的讲课节奏吗？</div>
+        <div class="option" onclick="selectOption(this, 1)">完全能跟上</div>
+        <div class="option" onclick="selectOption(this, 1)">基本能跟上</div>
+        <div class="option" onclick="selectOption(this, 1)">有点吃力</div>
+        <div class="option" onclick="selectOption(this, 1)">完全跟不上</div>
+    </div>
+
+    <!-- 问题2 -->
+    <div class="question">
+        <div class="q-title">2. 本节课的知识点你听懂了多少？</div>
+        <div class="option" onclick="selectOption(this, 2)">全部听懂</div>
+        <div class="option" onclick="selectOption(this, 2)">大部分听懂</div>
+        <div class="option" onclick="selectOption(this, 2)">一半听懂</div>
+        <div class="option" onclick="selectOption(this, 2)">很少听懂</div>
+    </div>
+
+    <!-- 问题3 -->
+    <div class="question">
+        <div class="q-title">3. 你对本节课的兴趣程度？</div>
+        <div class="option" onclick="selectOption(this, 3)">非常感兴趣</div>
+        <div class="option" onclick="selectOption(this, 3)">比较感兴趣</div>
+        <div class="option" onclick="selectOption(this, 3)">一般</div>
+        <div class="option" onclick="selectOption(this, 3)">不感兴趣</div>
+    </div>
+
+    <div class="success" id="successTip">提交成功！感谢你的反馈😊</div>
+    <button class="submit-btn" id="submitBtn" onclick="submitFeedback()">提交反馈</button>
+
+    <script>
+        // 存储答案
+        let answers = {1: "", 2: "", 3: ""};
+        
+        // 选择选项
+        function selectOption(elem, qNum) {
+            // 取消同题其他选中状态
+            const siblings = elem.parentElement.querySelectorAll(".option");
+            siblings.forEach(item => item.classList.remove("selected"));
+            // 选中当前选项
+            elem.classList.add("selected");
+            // 存储答案
+            answers[qNum] = elem.innerText;
+            // 检查是否可提交
+            checkSubmit();
+        }
+
+        // 检查是否所有题目都答完
+        function checkSubmit() {
+            const allAnswered = Object.values(answers).every(item => item !== "");
+            document.getElementById("submitBtn").disabled = !allAnswered;
+        }
+
+        // 提交反馈
+        function submitFeedback() {
+            // 本地存储统计数据
+            let stats = JSON.parse(localStorage.getItem("feedbackStats")) || {
+                q1: {"完全能跟上":0, "基本能跟上":0, "有点吃力":0, "完全跟不上":0},
+                q2: {"全部听懂":0, "大部分听懂":0, "一半听懂":0, "很少听懂":0},
+                q3: {"非常感兴趣":0, "比较感兴趣":0, "一般":0, "不感兴趣":0}
+            };
+            
+            // 更新统计
+            stats.q1[answers[1]]++;
+            stats.q2[answers[2]]++;
+            stats.q3[answers[3]]++;
+            
+            // 保存到本地
+            localStorage.setItem("feedbackStats", JSON.stringify(stats));
+            
+            // 显示成功提示
+            document.getElementById("successTip").style.display = "block";
+            document.getElementById("submitBtn").disabled = true;
+        }
+    </script>
+</body>
+</html>
