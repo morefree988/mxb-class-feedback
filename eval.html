@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-<title>春江花月夜 · 课程评价</title>
+<title>春江花月夜 · 课程评价 · 笑颜灵童</title>
 <style>
-  /* 清除所有复杂样式，只保留手机优雅古风 */
   * {
     margin: 0;
     padding: 0;
@@ -14,10 +13,9 @@
   }
 
   body {
-    /* 保证手机微信优先使用楷体，强指定 */
     font-family: "STKaiti", "华文楷书", "楷体", "KaiTi", "Microsoft YaHei", "PingFang SC", serif;
     min-height: 100vh;
-    background: #0d1f1b;  /* 深色底，衬托古意 */
+    background: #0d1f1b;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,7 +23,7 @@
     position: relative;
   }
 
-  /* 极简背景：一轮淡月和些许远山（轻量，不卡顿） */
+  /* 淡雅水墨背景 */
   body::before {
     content: "";
     position: fixed;
@@ -43,23 +41,23 @@
     pointer-events: none;
   }
 
-  /* 主卡片：纯白微透的古纸质感，大留白 */
+  /* 主卡片 */
   .card {
     position: relative;
     z-index: 10;
     width: 100%;
-    max-width: 500px;
+    max-width: 520px;
     margin: 0 auto;
     background: rgba(253, 250, 240, 0.96);
     border-radius: 48px 24px 52px 24px;
-    padding: 48px 28px 56px 28px;
+    padding: 40px 28px 52px 28px;
     text-align: center;
     box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 250, 210, 0.7);
     border: 1px solid rgba(170, 140, 100, 0.4);
     backdrop-filter: blur(2px);
   }
 
-  /* 极简装饰：一枚小印章和落款，不干扰内容 */
+  /* 装饰印章/落款 */
   .seal {
     position: absolute;
     left: 20px;
@@ -97,13 +95,31 @@
     font-size: 17px;
     color: #4f3e2a;
     line-height: 1.85;
-    margin: 28px 0 36px;
+    margin: 28px 0 24px;
     background: rgba(225, 210, 180, 0.3);
     padding: 14px 18px;
     border-radius: 48px;
     letter-spacing: 1px;
   }
 
+  /* 卡通古风人物容器 */
+  .character {
+    margin: 15px auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+  }
+
+  .character svg {
+    display: block;
+    width: 100px;
+    height: 100px;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
+    transition: transform 0.2s ease;
+  }
+
+  /* 按钮样式 */
   .btn {
     display: inline-block;
     background: #8b6a42;
@@ -121,6 +137,7 @@
     transition: 0.2s;
     width: auto;
     min-width: 210px;
+    cursor: pointer;
   }
 
   .btn:active {
@@ -143,7 +160,7 @@
     .poem {
       font-size: 15px;
       padding: 12px 14px;
-      margin: 24px 0 32px;
+      margin: 24px 0 20px;
     }
     .btn {
       font-size: 18px;
@@ -161,10 +178,15 @@
       bottom: 16px;
       right: 18px;
     }
+    .character svg {
+      width: 85px;
+      height: 85px;
+    }
   }
 </style>
 </head>
 <body>
+
 <div class="card">
   <div class="seal"></div>
   <div class="inscription">· 春江花月 ·</div>
@@ -173,7 +195,203 @@
     江流宛转绕芳甸，月照花林皆似霰。<br>
     感谢您体验本次微慕课<br>恳请留下宝贵评价
   </div>
-  <a href="https://wj.qq.com/s2/26225508/6b23/" class="btn" target="_blank">📜 进入评价</a>
+
+  <!-- 卡通古风人物 -->
+  <div class="character">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="faceClip">
+          <circle cx="60" cy="55" r="38" />
+        </clipPath>
+      </defs>
+      <!-- 身体（交领长袍） -->
+      <path d="M42 90 L78 90 L82 110 L38 110 Z" fill="#A97C54" stroke="#7E593E" stroke-width="1.2" />
+      <path d="M50 90 L60 105 L70 90 Z" fill="#C79366" stroke="#7E593E" stroke-width="1" />
+      <!-- 衣领装饰 -->
+      <path d="M54 90 L60 78 L66 90" fill="none" stroke="#E2BC8C" stroke-width="1.5" />
+      
+      <!-- 头部（肤色） -->
+      <circle cx="60" cy="55" r="38" fill="#FCE5CD" stroke="#9B6E42" stroke-width="1.5" />
+      
+      <!-- 发髻（古风双髻） -->
+      <ellipse cx="46" cy="28" rx="12" ry="14" fill="#3E2720" />
+      <ellipse cx="74" cy="28" rx="12" ry="14" fill="#3E2720" />
+      <path d="M46 22 Q60 14 74 22" fill="#3E2720" />
+      <!-- 垂发 -->
+      <path d="M38 38 Q34 48 36 58" stroke="#3E2720" stroke-width="5" fill="none" stroke-linecap="round" />
+      <path d="M82 38 Q86 48 84 58" stroke="#3E2720" stroke-width="5" fill="none" stroke-linecap="round" />
+      
+      <!-- 眉毛（微笑时平缓，大笑时更弯） -->
+      <path id="leftEyebrow" d="M45 44 Q50 41 55 44" stroke="#4F2F1C" stroke-width="2" fill="none" stroke-linecap="round" />
+      <path id="rightEyebrow" d="M65 44 Q70 41 75 44" stroke="#4F2F1C" stroke-width="2" fill="none" stroke-linecap="round" />
+      
+      <!-- 眼睛（眼白 + 眼珠） -->
+      <circle cx="48" cy="56" r="8" fill="#FFFFFF" stroke="#8B6946" stroke-width="1" />
+      <circle cx="72" cy="56" r="8" fill="#FFFFFF" stroke="#8B6946" stroke-width="1" />
+      
+      <!-- 左眼珠（瞳孔） -->
+      <circle id="leftPupil" cx="48" cy="56" r="4" fill="#2E241F" />
+      <circle id="leftHighlight" cx="46.5" cy="54.5" r="1.5" fill="#FFFFFF" />
+      <!-- 右眼珠 -->
+      <circle id="rightPupil" cx="72" cy="56" r="4" fill="#2E241F" />
+      <circle id="rightHighlight" cx="70.5" cy="54.5" r="1.5" fill="#FFFFFF" />
+      
+      <!-- 嘴巴：默认微笑（向下弯，倒月牙，温柔含笑） -->
+      <path id="mouth" d="M52 70 Q60 78 68 70" stroke="#B35F2E" stroke-width="2.5" fill="none" stroke-linecap="round" />
+      
+      <!-- 大笑时的舌头（初始隐藏） -->
+      <ellipse id="tongue" cx="60" cy="76" rx="7" ry="3.5" fill="#E87A5A" opacity="0" />
+      
+      <!-- 腮红 -->
+      <circle cx="40" cy="64" r="3" fill="#F0AA8A" opacity="0.5" />
+      <circle cx="80" cy="64" r="3" fill="#F0AA8A" opacity="0.5" />
+      
+      <!-- 手持书卷 -->
+      <rect x="95" y="72" width="14" height="20" rx="2" fill="#EAD5B0" stroke="#9B7B4A" stroke-width="1" transform="rotate(15 102 82)" />
+      <line x1="98" y1="78" x2="106" y2="80" stroke="#9B7B4A" stroke-width="0.8" transform="rotate(15 102 82)" />
+      <line x1="97" y1="84" x2="105" y2="86" stroke="#9B7B4A" stroke-width="0.8" transform="rotate(15 102 82)" />
+    </svg>
+  </div>
+
+  <a href="https://wj.qq.com/s2/26225508/6b23/" class="btn" target="_blank" id="evaluateBtn">📜 进入评价</a>
 </div>
+
+<script>
+  (function() {
+    const btn = document.getElementById('evaluateBtn');
+    const mouth = document.getElementById('mouth');
+    const leftEyebrow = document.getElementById('leftEyebrow');
+    const rightEyebrow = document.getElementById('rightEyebrow');
+    const tongue = document.getElementById('tongue');
+    
+    // 眼珠元素
+    const leftPupil = document.getElementById('leftPupil');
+    const rightPupil = document.getElementById('rightPupil');
+    const leftHighlight = document.getElementById('leftHighlight');
+    const rightHighlight = document.getElementById('rightHighlight');
+    
+    // 眼睛中心坐标（SVG viewBox 120x120）
+    const leftEyeCenter = { x: 48, y: 56 };
+    const rightEyeCenter = { x: 72, y: 56 };
+    const maxMoveRadius = 4.5;
+    
+    const svgElement = document.querySelector('.character svg');
+    
+    // 表情1：微笑（嘴巴向下弯，温和含笑）
+    function setSmile() {
+      // 向下弯曲的弧形，像倒月牙
+      mouth.setAttribute('d', 'M52 70 Q60 78 68 70');
+      // 眉毛平缓上扬
+      leftEyebrow.setAttribute('d', 'M45 44 Q50 41 55 44');
+      rightEyebrow.setAttribute('d', 'M65 44 Q70 41 75 44');
+      tongue.setAttribute('opacity', '0');
+    }
+    
+    // 表情2：开怀大笑（嘴巴大张，露出舌头，眉毛更弯）
+    function setLaughing() {
+      // 大笑嘴型：向下张开成半圆形
+      mouth.setAttribute('d', 'M48 68 Q60 86 72 68');
+      // 眉毛弯弯，非常开心
+      leftEyebrow.setAttribute('d', 'M44 42 Q50 36 56 42');
+      rightEyebrow.setAttribute('d', 'M64 42 Q70 36 76 42');
+      // 显示舌头
+      tongue.setAttribute('opacity', '0.85');
+    }
+    
+    // 更新眼珠位置（根据鼠标/触摸点）
+    function updateEyesPosition(clientX, clientY) {
+      if (!svgElement) return;
+      const rect = svgElement.getBoundingClientRect();
+      if (rect.width === 0) return;
+      const svgX = ((clientX - rect.left) / rect.width) * 120;
+      const svgY = ((clientY - rect.top) / rect.height) * 120;
+      
+      function getOffset(eyeCx, eyeCy) {
+        let dx = svgX - eyeCx;
+        let dy = svgY - eyeCy;
+        const distance = Math.hypot(dx, dy);
+        if (distance > maxMoveRadius) {
+          dx = dx / distance * maxMoveRadius;
+          dy = dy / distance * maxMoveRadius;
+        }
+        return { dx, dy };
+      }
+      
+      const leftOffset = getOffset(leftEyeCenter.x, leftEyeCenter.y);
+      const rightOffset = getOffset(rightEyeCenter.x, rightEyeCenter.y);
+      
+      leftPupil.setAttribute('cx', leftEyeCenter.x + leftOffset.dx);
+      leftPupil.setAttribute('cy', leftEyeCenter.y + leftOffset.dy);
+      leftHighlight.setAttribute('cx', leftEyeCenter.x + leftOffset.dx - 1.2);
+      leftHighlight.setAttribute('cy', leftEyeCenter.y + leftOffset.dy - 1.2);
+      
+      rightPupil.setAttribute('cx', rightEyeCenter.x + rightOffset.dx);
+      rightPupil.setAttribute('cy', rightEyeCenter.y + rightOffset.dy);
+      rightHighlight.setAttribute('cx', rightEyeCenter.x + rightOffset.dx - 1.2);
+      rightHighlight.setAttribute('cy', rightEyeCenter.y + rightOffset.dy - 1.2);
+    }
+    
+    function onMouseMove(e) {
+      updateEyesPosition(e.clientX, e.clientY);
+    }
+    
+    function onTouchMove(e) {
+      if (e.touches.length) {
+        updateEyesPosition(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }
+    
+    function resetEyes() {
+      leftPupil.setAttribute('cx', leftEyeCenter.x);
+      leftPupil.setAttribute('cy', leftEyeCenter.y);
+      leftHighlight.setAttribute('cx', leftEyeCenter.x - 1.2);
+      leftHighlight.setAttribute('cy', leftEyeCenter.y - 1.2);
+      rightPupil.setAttribute('cx', rightEyeCenter.x);
+      rightPupil.setAttribute('cy', rightEyeCenter.y);
+      rightHighlight.setAttribute('cx', rightEyeCenter.x - 1.2);
+      rightHighlight.setAttribute('cy', rightEyeCenter.y - 1.2);
+    }
+    
+    // 按钮事件：鼠标/手指悬停 -> 大笑；离开 -> 微笑
+    if (btn) {
+      btn.addEventListener('mouseenter', () => {
+        setLaughing();
+        // 活泼缩放效果
+        const svgWrap = document.querySelector('.character svg');
+        if (svgWrap) {
+          svgWrap.style.transform = 'scale(1.05)';
+          setTimeout(() => { if (svgWrap) svgWrap.style.transform = ''; }, 200);
+        }
+      });
+      btn.addEventListener('mouseleave', () => {
+        setSmile();
+        const svgWrap = document.querySelector('.character svg');
+        if (svgWrap) svgWrap.style.transform = 'scale(1)';
+      });
+      
+      // 移动端触摸支持
+      btn.addEventListener('touchstart', (e) => {
+        // 不阻止默认事件，避免影响点击跳转
+        setLaughing();
+      });
+      btn.addEventListener('touchend', () => {
+        setSmile();
+      });
+      btn.addEventListener('touchcancel', () => {
+        setSmile();
+      });
+    }
+    
+    // 眼睛跟随全局
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('touchmove', onTouchMove);
+    document.addEventListener('mouseleave', resetEyes);
+    document.addEventListener('touchend', resetEyes);
+    
+    // 初始化：微笑表情（嘴巴向下弯） + 眼珠归中
+    setSmile();
+    resetEyes();
+  })();
+</script>
 </body>
 </html>
