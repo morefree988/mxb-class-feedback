@@ -2,28 +2,30 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-<title>春江花月夜 · 课程评价 | 水墨丹青</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+<title>春江花月夜 · 课程评价</title>
 <style>
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* 整体古风基调 — 水墨夜色，山月花影，意境悠远 */
+/* 手机端优雅古风基调 */
 body {
-  font-family: '华文楷书', '楷体', 'Microsoft YaHei', '宋体', 'Noto Serif SC', serif;
+  /* 优先使用移动端支持的楷体 / 华文楷书，其次系统美观字体 */
+  font-family: "华文楷书", "楷体", "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Noto Serif SC", serif;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 16px;
   position: relative;
-  background: #0d1f1b;  /* 深幽底色，衬托水墨层次 */
+  background-color: #0c1e19;  /* 深幽底色，衬托水墨 */
 }
 
-/* ----- 全新古风水墨背景：层峦、明月、轻舟、飞花、水雾 ----- */
+/* ----- 全新手机优化背景：轻量且富有古韵（减少复杂径向渐变，保留山月花鸟写意）----- */
 body::before {
   content: '';
   position: fixed;
@@ -34,119 +36,57 @@ body::before {
   z-index: 0;
   pointer-events: none;
   background: 
-    /* 1. 皎皎圆月 + 光晕 (右上) */
-    radial-gradient(circle at 80% 20%, 
-      rgba(255, 250, 210, 0.95) 0%,
-      rgba(255, 240, 170, 0.7) 10%,
-      rgba(255, 220, 130, 0.3) 25%,
-      transparent 50%),
-    
-    /* 2. 远山叠嶂 (深青墨韵) */
-    linear-gradient(135deg, 
-      #1d3d32 0%, #1d3d32 12%, transparent 12%),
-    linear-gradient(150deg, 
-      #2c5546 0%, #2c5546 18%, transparent 18%),
-    linear-gradient(105deg, 
-      #174134 0%, #174134 24%, transparent 24%),
-    linear-gradient(80deg, 
-      #0f352a 0%, #0f352a 32%, transparent 32%),
-    linear-gradient(165deg, 
-      #234e40 0%, #234e40 38%, transparent 38%),
-    
-    /* 3. 江流波纹 (细密水纹，灵动) */
-    repeating-linear-gradient(100deg, 
-      rgba(140, 170, 150, 0.28) 0px, 
-      rgba(140, 170, 150, 0.28) 1px,
-      transparent 1px,
-      transparent 20px),
-    
-    /* 4. 近处花林落英 (淡粉/绯色，疏密有致) */
-    radial-gradient(circle at 12% 86%, 
-      rgba(255, 190, 165, 0.65) 0%, 
-      rgba(245, 155, 125, 0.5) 7%,
-      transparent 14%),
-    radial-gradient(circle at 30% 92%, 
-      rgba(255, 180, 150, 0.6) 0%, 
-      rgba(240, 140, 110, 0.45) 6%,
-      transparent 13%),
-    radial-gradient(circle at 52% 82%, 
-      rgba(255, 200, 170, 0.55) 0%, 
-      rgba(245, 155, 125, 0.45) 8%,
-      transparent 15%),
-    radial-gradient(circle at 74% 88%, 
-      rgba(250, 185, 155, 0.6) 0%, 
-      rgba(240, 145, 115, 0.5) 6%,
-      transparent 12%),
-    radial-gradient(circle at 90% 78%, 
-      rgba(255, 195, 165, 0.55) 0%, 
-      rgba(245, 150, 115, 0.45) 7%,
-      transparent 14%),
-    radial-gradient(circle at 48% 95%, 
-      rgba(250, 175, 145, 0.7) 0%, 
-      rgba(235, 135, 105, 0.55) 5%,
-      transparent 12%),
-    
-    /* 5. 水墨飞鸟 (三两点墨，意趣横生) */
-    radial-gradient(ellipse at 68% 32%, 
-      #4a6b5c 0%, #4a6b5c 2%, transparent 3%),
-    radial-gradient(ellipse at 73% 29%, 
-      #3e5f51 0%, #3e5f51 2%, transparent 3%),
-    radial-gradient(ellipse at 78% 34%, 
-      #517568 0%, #517568 1.8%, transparent 3%),
-    radial-gradient(ellipse at 62% 38%, 
-      #3e6153 0%, #3e6153 1.5%, transparent 2.5%),
-    
-    /* 6. 一叶扁舟 (写意渔船，增幽静) */
-    radial-gradient(ellipse at 20% 72%, 
-      #756b51 0%, #756b51 2.5%, transparent 3.5%),
-    radial-gradient(ellipse at 23% 74%, 
-      #8d7e5f 0%, #8d7e5f 2%, transparent 3%),
-    
-    /* 7. 淡墨云雾氤氲 */
-    radial-gradient(ellipse at 40% 60%, 
-      rgba(30, 70, 60, 0.25) 0%, 
+    /* 皎皎圆月 (右上柔和光晕) */
+    radial-gradient(circle at 82% 18%, 
+      rgba(255, 250, 210, 0.92) 0%,
+      rgba(255, 235, 170, 0.65) 12%,
+      rgba(245, 200, 130, 0.3) 28%,
       transparent 55%),
-    radial-gradient(ellipse at 85% 55%, 
-      rgba(25, 65, 55, 0.25) 0%, 
-      transparent 60%),
     
-    /* 8. 芦苇 / 汀草 (轻描淡写) */
-    repeating-linear-gradient(45deg, 
-      rgba(100, 120, 90, 0.3) 0px, 
-      rgba(100, 120, 90, 0.3) 1px,
+    /* 远山墨韵 (简化层数，手机性能友好) */
+    linear-gradient(135deg, #1e4035 0%, #1e4035 14%, transparent 14%),
+    linear-gradient(150deg, #2a5546 0%, #2a5546 22%, transparent 22%),
+    linear-gradient(110deg, #154235 0%, #154235 30%, transparent 30%),
+    linear-gradient(75deg, #0e362b 0%, #0e362b 38%, transparent 38%),
+    
+    /* 江水微波 (轻柔) */
+    repeating-linear-gradient(95deg, 
+      rgba(110, 140, 120, 0.25) 0px, 
+      rgba(110, 140, 120, 0.25) 1px,
       transparent 1px,
-      transparent 12px);
+      transparent 24px),
     
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat,
-                     no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
+    /* 落英花林 (点缀几笔淡粉，不密集) */
+    radial-gradient(circle at 15% 88%, rgba(255, 185, 155, 0.6) 0%, rgba(245, 145, 115, 0.45) 8%, transparent 16%),
+    radial-gradient(circle at 40% 92%, rgba(255, 190, 160, 0.55) 0%, rgba(240, 140, 110, 0.4) 7%, transparent 14%),
+    radial-gradient(circle at 70% 84%, rgba(250, 180, 150, 0.5) 0%, rgba(235, 135, 105, 0.4) 8%, transparent 15%),
+    radial-gradient(circle at 88% 80%, rgba(255, 195, 165, 0.5) 0%, rgba(245, 150, 115, 0.4) 6%, transparent 13%),
+    
+    /* 写意飞鸟 */
+    radial-gradient(ellipse at 68% 32%, #557a68 0%, #557a68 2%, transparent 3%),
+    radial-gradient(ellipse at 74% 29%, #476b5c 0%, #476b5c 1.8%, transparent 2.8%),
+    
+    /* 淡墨氤氲 */
+    radial-gradient(ellipse at 35% 60%, rgba(28, 68, 58, 0.2) 0%, transparent 60%),
+    radial-gradient(ellipse at 88% 55%, rgba(25, 65, 55, 0.2) 0%, transparent 65%);
+    
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat,
                      no-repeat, no-repeat, no-repeat, no-repeat,
                      no-repeat, no-repeat,
-                     no-repeat, no-repeat,
-                     repeat;
-  background-position: 
-    0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0,
-    0 0, 0 0, 0 0, 0 0, 0 0, 0 0,
-    0 0, 0 0, 0 0, 0 0,
-    0 0, 0 0,
-    0 0, 0 0,
-    0 0;
-  background-size: 
-    auto, auto, auto, auto, auto, auto, 100% 100%,
-    auto, auto, auto, auto, auto, auto,
-    auto, auto, auto, auto,
-    auto, auto,
-    auto, auto,
-    100% 100%;
-  background-blend-mode: normal, normal, normal, normal, normal, normal, normal,
-                         normal, normal, normal, normal, normal, normal,
-                         normal, normal, normal, normal,
-                         normal, normal,
-                         normal, normal,
-                         normal;
-  opacity: 0.92;
+                     no-repeat, no-repeat;
+  background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0,
+                       0 0, 0 0, 0 0, 0 0,
+                       0 0, 0 0,
+                       0 0, 0 0;
+  background-size: auto, auto, auto, auto, auto, 100% 100%,
+                   auto, auto, auto, auto,
+                   auto, auto,
+                   auto, auto;
+  background-blend-mode: normal;
+  opacity: 0.94;
 }
 
-/* 增加一层薄宣纸纹理，加强古风质感 */
+/* 增加一层轻薄宣纸纹理 (保持质感，手机无压力) */
 body::after {
   content: '';
   position: fixed;
@@ -156,66 +96,92 @@ body::after {
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" opacity="0.12"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" opacity="0.08"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
   background-repeat: repeat;
-  background-size: 180px 140px;
+  background-size: 120px 100px;
   mix-blend-mode: overlay;
+  pointer-events: none;
 }
 
-/* 主卡片 — 仿古绢帛 / 蝉翼宣，朦胧透景 */
+/* 主卡片 — 仿古宣纸，圆润边缘，手机易读 */
 .card {
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: 700px;
-  background: rgba(250, 245, 235, 0.86);  /* 暖白古纸，微透山水 */
-  backdrop-filter: blur(4px);
-  border-radius: 48px 28px 52px 28px;
-  padding: 48px 32px 56px 32px;
+  max-width: 560px;   /* 手机舒适宽度 */
+  margin: 0 auto;
+  background: rgba(250, 245, 235, 0.92);
+  backdrop-filter: blur(6px);
+  border-radius: 48px 24px 52px 24px;
+  padding: 36px 24px 44px 24px;
   text-align: center;
-  box-shadow: 0 24px 44px -14px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 250, 220, 0.8);
+  box-shadow: 0 20px 36px -12px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 250, 220, 0.7);
   border: 1px solid rgba(170, 140, 100, 0.5);
   transition: all 0.2s;
 }
 
-/* 暗纹边框，古书韵味 */
+/* 暗纹边框 */
 .card::before {
   content: '';
   position: absolute;
-  top: 20px;
-  left: 26px;
-  right: 26px;
-  bottom: 20px;
+  top: 16px;
+  left: 20px;
+  right: 20px;
+  bottom: 16px;
   border: 1px solid rgba(130, 100, 70, 0.35);
   border-radius: 36px 16px 42px 16px;
   pointer-events: none;
 }
 
-/* 仿古籍藏书印 / 墨迹点缀 */
-.card::after {
-  content: '❦';
-  font-family: serif;
+/* 印章与落款保留，但调整手机位置 */
+.card .seal-mark {
   position: absolute;
-  bottom: 24px;
-  right: 32px;
-  font-size: 28px;
-  color: rgba(130, 85, 55, 0.3);
-  opacity: 0.55;
-  transform: rotate(8deg);
+  left: 20px;
+  top: 28px;
+  width: 48px;
+  height: 48px;
+  opacity: 0.5;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="%23855e3c" stroke-width="1.2" d="M18,30 L82,30 L82,70 L18,70 Z M28,42 L72,42 M28,54 L60,54" stroke-dasharray="2 2"/><circle cx="50" cy="62" r="12" stroke="%23956642" stroke-width="1" fill="none"/><text x="50" y="68" font-size="11" text-anchor="middle" fill="%23855e3c" font-family="Georgia">春江</text></svg>') no-repeat center;
+  background-size: contain;
   pointer-events: none;
 }
 
-/* 主标题：行云流水，诗韵绵长 */
+.colophon {
+  position: absolute;
+  right: 18px;
+  top: 28px;
+  writing-mode: vertical-rl;
+  font-size: 11px;
+  color: #9c8264;
+  opacity: 0.55;
+  letter-spacing: 2px;
+  font-family: '楷体', '华文楷书', serif;
+  pointer-events: none;
+  line-height: 1.6;
+}
+
+.inscription {
+  position: absolute;
+  bottom: 22px;
+  left: 24px;
+  font-size: 11px;
+  color: #8b6e4c;
+  opacity: 0.6;
+  font-family: '楷体', serif;
+  letter-spacing: 0.5px;
+}
+
+/* 主标题：手机字号适中 */
 h1 {
-  font-size: 38px;
+  font-size: 30px;
   font-weight: 400;
-  letter-spacing: 6px;
+  letter-spacing: 3px;
   color: #2b3a2a;
-  margin-bottom: 18px;
-  text-shadow: 1px 1px 2px rgba(100, 70, 40, 0.08);
+  margin-bottom: 14px;
+  text-shadow: 1px 1px 1px rgba(100, 70, 40, 0.08);
   position: relative;
   display: inline-block;
-  padding-bottom: 10px;
+  padding-bottom: 8px;
 }
 
 h1:after {
@@ -228,188 +194,159 @@ h1:after {
   background: linear-gradient(90deg, transparent, #bc8f6a, #e6c89b, #bc8f6a, transparent);
 }
 
-/* 诗句副标题 */
+/* 诗句副标题：手机自适应内边距 */
 .subtitle {
-  font-size: 18px;
+  font-size: 16px;
   color: #4d3a25;
-  margin-bottom: 44px;
-  line-height: 1.9;
-  background: rgba(225, 205, 175, 0.45);
+  margin-bottom: 36px;
+  line-height: 1.75;
+  background: rgba(225, 205, 175, 0.4);
   display: inline-block;
-  padding: 12px 30px;
-  border-radius: 60px;
-  letter-spacing: 1.5px;
+  padding: 10px 20px;
+  border-radius: 48px;
+  letter-spacing: 1px;
   backdrop-filter: blur(2px);
-  box-shadow: inset 0 0 6px rgba(110, 70, 40, 0.1), 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: inset 0 0 5px rgba(110, 70, 40, 0.08), 0 2px 5px rgba(0,0,0,0.04);
 }
 
-/* 卷轴风格按钮 — 居中雅致 */
+/* 按钮：手机容易点击，居中，视觉舒适 */
 .btn {
   display: inline-block;
-  padding: 15px 48px;
+  padding: 14px 36px;
   background: linear-gradient(145deg, #9b764c, #7c5a38);
   color: #fff7e8;
   text-decoration: none;
-  border-radius: 48px;
-  font-size: 20px;
+  border-radius: 60px;
+  font-size: 19px;
   font-weight: 400;
-  letter-spacing: 4px;
-  transition: all 0.3s ease;
+  letter-spacing: 3px;
+  transition: all 0.25s ease;
   border: 1px solid #ebdbbd;
-  box-shadow: 0 8px 18px rgba(30, 20, 8, 0.35), inset 0 1px 0 rgba(255, 240, 180, 0.7);
-  font-family: '华文楷书', '楷体', serif;
+  box-shadow: 0 6px 14px rgba(30, 20, 8, 0.3), inset 0 1px 0 rgba(255, 240, 180, 0.6);
+  font-family: '华文楷书', '楷体', 'PingFang SC', serif;
   backdrop-filter: blur(2px);
-  position: relative;
-  overflow: hidden;
-  margin-top: 8px;
-}
-
-.btn:hover {
-  transform: translateY(-3px) scale(1.02);
-  background: linear-gradient(145deg, #b18557, #8e6a42);
-  box-shadow: 0 14px 24px rgba(30, 20, 5, 0.4);
-  color: #fffcf0;
-  border-color: #fff0c0;
-  letter-spacing: 5px;
+  width: auto;
+  min-width: 200px;
+  margin-top: 6px;
 }
 
 .btn:active {
-  transform: translateY(1px);
+  transform: scale(0.97);
+  background: linear-gradient(145deg, #8a6842, #705032);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
 
-/* 左侧藏书印（闲章） */
-.card .seal-mark {
-  position: absolute;
-  left: 26px;
-  top: 38px;
-  width: 58px;
-  height: 58px;
-  opacity: 0.5;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="%23855e3c" stroke-width="1.2" d="M18,30 L82,30 L82,70 L18,70 Z M28,42 L72,42 M28,54 L60,54" stroke-dasharray="2 2"/><circle cx="50" cy="62" r="12" stroke="%23956642" stroke-width="1" fill="none"/><text x="50" y="68" font-size="11" text-anchor="middle" fill="%23855e3c" font-family="Georgia">春江</text></svg>') no-repeat center;
-  background-size: contain;
-  pointer-events: none;
-}
-
-/* 右侧竖排题跋 */
-.colophon {
-  position: absolute;
-  right: 22px;
-  top: 36px;
-  writing-mode: vertical-rl;
-  font-size: 12px;
-  color: #9c8264;
-  opacity: 0.55;
-  letter-spacing: 2px;
-  font-family: '楷体', serif;
-  pointer-events: none;
-  text-orientation: mixed;
-  line-height: 1.6;
-}
-
-/* 底部落款小字 */
-.inscription {
-  position: absolute;
-  bottom: 30px;
-  left: 34px;
-  font-size: 12px;
-  color: #8b6e4c;
-  opacity: 0.6;
-  font-style: normal;
-  font-family: '楷体', serif;
-  letter-spacing: 0.5px;
-}
-
-/* 增加手绘梅花枝干暗纹 (极淡，添雅) */
+/* 添加梅花枝干淡淡装饰，手机精简但保留风雅 */
 .card .plum-branch {
   position: absolute;
-  bottom: 10px;
-  right: 15px;
-  width: 90px;
-  height: 90px;
+  bottom: 12px;
+  right: 12px;
+  width: 70px;
+  height: 70px;
   opacity: 0.2;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><path d="M85,70 L70,50 L55,58 L62,43 L45,35 L55,25 L70,30 L78,18 L88,25 L95,15 L98,28 L90,38 L100,44 L92,55 L102,62 L90,70 Z" fill="none" stroke="%238a5a3a" stroke-width="1.2" stroke-linecap="round"/><circle cx="82" cy="28" r="2.2" fill="%23cf8b6b"/><circle cx="60" cy="40" r="2" fill="%23cf8b6b"/><circle cx="78" cy="48" r="1.8" fill="%23cf8b6b"/></svg>') no-repeat;
   background-size: contain;
   pointer-events: none;
 }
 
-/* 响应式调整 (手机适配) */
-@media (max-width: 640px) {
-  body {
-    padding: 16px;
-  }
-  .card {
-    padding: 40px 20px 48px 20px;
-    border-radius: 40px 20px 44px 20px;
-  }
-  h1 {
-    font-size: 28px;
-    letter-spacing: 3px;
-  }
-  .subtitle {
-    font-size: 15px;
-    padding: 8px 20px;
-    margin-bottom: 36px;
-  }
-  .btn {
-    padding: 12px 32px;
-    font-size: 18px;
-    letter-spacing: 3px;
-  }
-  .card .seal-mark {
-    width: 44px;
-    height: 44px;
-    left: 16px;
-    top: 24px;
-  }
-  .colophon {
-    font-size: 10px;
-    right: 14px;
-    top: 26px;
-  }
-  .inscription {
-    font-size: 9px;
-    bottom: 20px;
-    left: 20px;
-  }
-  .card .plum-branch {
-    width: 70px;
-    height: 70px;
-    bottom: 5px;
-    right: 8px;
-  }
-}
-
-/* 增强古风意境：添加淡淡的竖排诗文水印 (背景层) */
-body .bg-poem {
+/* 背景竖排诗词水印 (极淡) */
+.bg-poem {
   position: fixed;
-  bottom: 5%;
+  bottom: 3%;
   left: 2%;
   writing-mode: vertical-rl;
-  font-size: 11px;
+  font-size: 10px;
   color: #8d7a5f;
-  opacity: 0.18;
+  opacity: 0.2;
   letter-spacing: 2px;
   font-family: '楷体', serif;
   z-index: 1;
   pointer-events: none;
   white-space: nowrap;
-  text-shadow: 0 0 2px rgba(0,0,0,0.1);
 }
 
-/* 为手机增加额外水波纹细微动效 (轻微柔光) */
+/* 手机窄屏进一步优化 */
+@media (max-width: 480px) {
+  body {
+    padding: 12px;
+  }
+  .card {
+    padding: 30px 20px 40px 20px;
+    border-radius: 40px 20px 44px 20px;
+  }
+  h1 {
+    font-size: 26px;
+    letter-spacing: 2px;
+  }
+  .subtitle {
+    font-size: 14px;
+    padding: 8px 16px;
+    margin-bottom: 32px;
+  }
+  .btn {
+    padding: 12px 28px;
+    font-size: 17px;
+    letter-spacing: 2.5px;
+    min-width: 180px;
+  }
+  .card .seal-mark {
+    width: 40px;
+    height: 40px;
+    left: 14px;
+    top: 20px;
+  }
+  .colophon {
+    font-size: 10px;
+    right: 12px;
+    top: 22px;
+  }
+  .inscription {
+    font-size: 9px;
+    bottom: 16px;
+    left: 18px;
+  }
+  .card .plum-branch {
+    width: 55px;
+    height: 55px;
+    bottom: 8px;
+    right: 8px;
+  }
+  .bg-poem {
+    font-size: 8px;
+    bottom: 2%;
+    left: 1%;
+    opacity: 0.18;
+  }
+}
+
+/* 大屏手机或平板舒适宽度限制 */
+@media (min-width: 600px) {
+  .card {
+    max-width: 580px;
+  }
+  h1 {
+    font-size: 34px;
+  }
+  .subtitle {
+    font-size: 17px;
+  }
+}
+
+/* 优雅波纹缓动 (轻柔) */
 @keyframes slowDrift {
   0% { background-position: 0% 0%; }
-  100% { background-position: 2% 1%; }
+  100% { background-position: 1.5% 1%; }
 }
 body::before {
-  animation: slowDrift 28s infinite alternate ease-in-out;
+  animation: slowDrift 30s infinite alternate ease-in-out;
 }
+
+/* 确保微信内字体兼容：楷体优先，降级方案美观 */
 </style>
 </head>
 <body>
 
 <div class="card">
-  <!-- 古风装饰元素 -->
   <div class="seal-mark"></div>
   <div class="colophon">月照花林</div>
   <div class="inscription">· 张若虚 意 ·</div>
@@ -421,12 +358,9 @@ body::before {
     感谢您体验本次课程，恳请留下宝贵评价
   </div>
   
-  <!-- 按钮居中 -->
   <a href="https://wj.qq.com/s2/26225508/6b23/" class="btn" target="_blank">📜 进入评价</a>
 </div>
 
-<!-- 极淡竖排背景诗词，增添书卷气 -->
 <div class="bg-poem">春江潮水连海平 海上明月共潮生 滟滟随波千万里 何处春江无月明</div>
-
 </body>
 </html>
