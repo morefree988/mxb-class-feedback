@@ -2,9 +2,10 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
 <title>春江花月夜 · 课程评价</title>
 <style>
+/* reset & 基础 */
 * {
   margin: 0;
   padding: 0;
@@ -12,181 +13,341 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/* 手机端优雅古风 — 专为微信优化 */
 body {
-  font-family: "KaiTi", "STKaiti", "SimSun", "PingFang SC", "Microsoft YaHei", serif;
+  /* 优先使用手机支持的楷体/宋体，保证美观 */
+  font-family: "华文楷书", "楷体", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Serif SC", serif;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 15px;
+  padding: 16px;
   position: relative;
-  background-color: #0c1e19;
+  background-color: #0c1e1a;
 }
 
-/* 柔和古风背景 */
+/* ---------- 轻量水墨背景 (手机性能友好，保留意境) ---------- */
 body::before {
   content: '';
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 0;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 80% 20%,
-      rgba(255,250,210,0.8) 0%,
-      rgba(255,235,170,0.5) 14%,
-      transparent 40%),
-    linear-gradient(135deg, #1e4035 0%, #1e4035 14%, transparent 14%),
-    linear-gradient(150deg, #2a5546 0%, #2a5546 22%, transparent 22%),
-    linear-gradient(110deg, #154235 0%, #154235 30%, transparent 30%),
-    linear-gradient(75deg, #0e362b 0%, #0e362b 38%, transparent 38%),
-    repeating-linear-gradient(95deg,
-      rgba(110,140,120,0.2) 0px,
-      rgba(110,140,120,0.2) 1px,
+  background: 
+    /* 明月 + 光晕 (右上) */
+    radial-gradient(circle at 85% 18%, 
+      rgba(255, 250, 210, 0.9) 0%,
+      rgba(255, 235, 170, 0.6) 15%,
+      rgba(245, 200, 130, 0.25) 30%,
+      transparent 60%),
+    /* 远山墨色 (三层即可，手机平滑) */
+    linear-gradient(135deg, #1d4035 0%, #1d4035 14%, transparent 14%),
+    linear-gradient(150deg, #285545 0%, #285545 24%, transparent 24%),
+    linear-gradient(105deg, #134235 0%, #134235 32%, transparent 32%),
+    /* 江水微波 */
+    repeating-linear-gradient(95deg, 
+      rgba(120, 150, 130, 0.2) 0px, 
+      rgba(120, 150, 130, 0.2) 1px,
       transparent 1px,
-      transparent 24px),
-    radial-gradient(circle at 20% 88%, rgba(255,185,155,0.5) 0%, transparent 15%),
-    radial-gradient(circle at 45% 92%, rgba(255,190,160,0.5) 0%, transparent 14%),
-    radial-gradient(circle at 75% 85%, rgba(250,180,150,0.5) 0%, transparent 15%),
-    radial-gradient(ellipse at 68% 32%, #557a68 0%, #557a68 2%, transparent 3%),
-    radial-gradient(ellipse at 74% 29%, #476b5c 0%, #476b5c 1.8%, transparent 2.8%);
-  background-size: auto;
-  opacity: 0.95;
-  animation: slowDrift 30s infinite alternate ease-in-out;
+      transparent 28px),
+    /* 落花几点 (不密集) */
+    radial-gradient(circle at 12% 90%, rgba(255, 185, 155, 0.55) 0%, rgba(245, 145, 115, 0.4) 8%, transparent 16%),
+    radial-gradient(circle at 38% 94%, rgba(255, 190, 160, 0.5) 0%, rgba(240, 140, 110, 0.35) 7%, transparent 15%),
+    radial-gradient(circle at 72% 85%, rgba(250, 180, 150, 0.5) 0%, rgba(235, 135, 105, 0.35) 8%, transparent 16%),
+    /* 飞鸟墨点 */
+    radial-gradient(ellipse at 70% 30%, #567a68 0%, #567a68 2%, transparent 3%),
+    radial-gradient(ellipse at 76% 27%, #456959 0%, #456959 1.8%, transparent 2.8%);
+    
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat,
+                     no-repeat, no-repeat, no-repeat,
+                     no-repeat, no-repeat;
+  background-position: 0 0, 0 0, 0 0, 0 0, 0 0,
+                       0 0, 0 0, 0 0,
+                       0 0, 0 0;
+  background-size: auto, auto, auto, auto, 100% 100%,
+                   auto, auto, auto,
+                   auto, auto;
+  opacity: 0.92;
 }
 
-/* 宣纸纹理 */
+/* 轻宣纸纹理 */
 body::after {
   content: '';
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" opacity="0.08"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
+  z-index: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" opacity="0.06"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
   background-repeat: repeat;
-  background-size: 120px 100px;
+  background-size: 140px 120px;
   mix-blend-mode: overlay;
 }
 
-/* 主卡片 */
+/* 主卡片 — 古纸质感，圆润舒适 */
 .card {
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: 380px;
-  background: rgba(250,245,235,0.93);
-  backdrop-filter: blur(6px);
-  border-radius: 32px;
-  padding: 35px 25px;
+  max-width: 520px;   /* 手机黄金宽度 */
+  margin: 0 auto;
+  background: rgba(252, 248, 238, 0.94);
+  backdrop-filter: blur(5px);
+  border-radius: 48px 24px 52px 24px;
+  padding: 34px 22px 42px 22px;
   text-align: center;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
-  border: 1px solid rgba(170,140,100,0.4);
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 250, 225, 0.8);
+  border: 1px solid rgba(170, 140, 100, 0.55);
+  transition: all 0.2s;
 }
 
-/* 内边框 */
+/* 暗纹边框 */
 .card::before {
   content: '';
   position: absolute;
-  top: 12px; left: 12px; right: 12px; bottom: 12px;
-  border: 1px solid rgba(130,100,70,0.25);
-  border-radius: 24px;
+  top: 14px;
+  left: 18px;
+  right: 18px;
+  bottom: 14px;
+  border: 1px solid rgba(130, 100, 70, 0.35);
+  border-radius: 38px 16px 44px 16px;
   pointer-events: none;
 }
 
-/* 小印章 */
-.seal-mark {
+/* 闲章（藏书印） */
+.card .seal-mark {
   position: absolute;
-  left: 20px; top: 20px;
-  width: 40px; height: 40px;
-  opacity: 0.45;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="20" y="30" width="60" height="40" fill="none" stroke="%23855e3c" stroke-width="1"/><text x="50" y="65" font-size="18" text-anchor="middle" fill="%23855e3c" font-family="KaiTi">春江</text></svg>') no-repeat center;
+  left: 18px;
+  top: 24px;
+  width: 46px;
+  height: 46px;
+  opacity: 0.55;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="%23855e3c" stroke-width="1.2" d="M18,30 L82,30 L82,70 L18,70 Z M28,42 L72,42 M28,54 L60,54" stroke-dasharray="2 2"/><circle cx="50" cy="62" r="12" stroke="%23956642" stroke-width="1" fill="none"/><text x="50" y="68" font-size="11" text-anchor="middle" fill="%23855e3c" font-family="Georgia">春江</text></svg>') no-repeat center;
   background-size: contain;
+  pointer-events: none;
 }
 
-/* 标题 */
-h1 {
-  font-size: 26px;
-  font-weight: normal;
-  color: #2b3a2a;
-  letter-spacing: 3px;
-  margin-bottom: 20px;
-  position: relative;
-  padding-bottom: 10px;
+/* 右侧竖排题跋 */
+.colophon {
+  position: absolute;
+  right: 16px;
+  top: 26px;
+  writing-mode: vertical-rl;
+  font-size: 11px;
+  color: #9c8264;
+  opacity: 0.6;
+  letter-spacing: 2px;
+  font-family: '楷体', '华文楷书', serif;
+  pointer-events: none;
+  line-height: 1.5;
 }
-h1::after {
+
+/* 底部落款 */
+.inscription {
+  position: absolute;
+  bottom: 20px;
+  left: 22px;
+  font-size: 10px;
+  color: #8b6e4c;
+  opacity: 0.65;
+  font-family: '楷体', serif;
+  letter-spacing: 0.5px;
+}
+
+/* 梅花枝干（极淡装饰） */
+.card .plum-branch {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  width: 62px;
+  height: 62px;
+  opacity: 0.2;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><path d="M85,70 L70,50 L55,58 L62,43 L45,35 L55,25 L70,30 L78,18 L88,25 L95,15 L98,28 L90,38 L100,44 L92,55 L102,62 L90,70 Z" fill="none" stroke="%238a5a3a" stroke-width="1.2" stroke-linecap="round"/><circle cx="82" cy="28" r="2.2" fill="%23cf8b6b"/><circle cx="60" cy="40" r="2" fill="%23cf8b6b"/><circle cx="78" cy="48" r="1.8" fill="%23cf8b6b"/></svg>') no-repeat;
+  background-size: contain;
+  pointer-events: none;
+}
+
+/* 主标题：大小适中，优雅 */
+h1 {
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: #2c3e2a;
+  margin-bottom: 14px;
+  text-shadow: 1px 1px 1px rgba(100, 70, 40, 0.08);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+h1:after {
   content: '';
   position: absolute;
-  bottom: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 120px; height: 1px;
-  background: #bc8f6a;
+  bottom: 0;
+  left: 15%;
+  width: 70%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, #bc8f6a, #e6c89b, #bc8f6a, transparent);
 }
 
-/* 诗句 */
+/* 诗句副标题：舒适行距 */
 .subtitle {
   font-size: 15px;
   color: #4d3a25;
-  line-height: 1.8;
-  background: rgba(225,205,175,0.35);
-  padding: 10px 18px;
-  border-radius: 24px;
-  margin-bottom: 35px;
+  margin-bottom: 34px;
+  line-height: 1.7;
+  background: rgba(225, 205, 175, 0.4);
   display: inline-block;
+  padding: 10px 20px;
+  border-radius: 48px;
+  letter-spacing: 1px;
+  backdrop-filter: blur(2px);
+  box-shadow: inset 0 0 4px rgba(110, 70, 40, 0.08), 0 2px 4px rgba(0,0,0,0.03);
 }
 
-/* 按钮 */
+/* 按钮：大而好点，视觉突出 */
 .btn {
   display: inline-block;
-  padding: 14px 36px;
+  padding: 14px 32px;
   background: linear-gradient(145deg, #9b764c, #7c5a38);
   color: #fff7e8;
   text-decoration: none;
-  border-radius: 30px;
-  font-size: 17px;
-  letter-spacing: 2px;
+  border-radius: 60px;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  transition: all 0.2s ease;
   border: 1px solid #ebdbbd;
-  box-shadow: 0 6px 14px rgba(30,20,8,0.25);
-  min-width: 180px;
-}
-.btn:active {
-  transform: scale(0.96);
+  box-shadow: 0 6px 14px rgba(30, 20, 8, 0.25), inset 0 1px 0 rgba(255, 240, 180, 0.6);
+  font-family: '华文楷书', '楷体', 'PingFang SC', serif;
+  backdrop-filter: blur(2px);
+  width: auto;
+  min-width: 190px;
+  margin-top: 6px;
 }
 
-/* 背景小字水印 */
+.btn:active {
+  transform: scale(0.97);
+  background: linear-gradient(145deg, #8a6842, #705032);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+/* 背景极淡竖排诗词 */
 .bg-poem {
   position: fixed;
-  bottom: 15px;
-  left: 10px;
+  bottom: 3%;
+  left: 2%;
   writing-mode: vertical-rl;
-  font-size: 12px;
+  font-size: 10px;
   color: #8d7a5f;
   opacity: 0.2;
+  letter-spacing: 2px;
+  font-family: '楷体', serif;
   z-index: 1;
   pointer-events: none;
-  font-family: "KaiTi", serif;
+  white-space: nowrap;
 }
 
+/* 手机小屏 (小于450px) 精细适配 */
+@media (max-width: 480px) {
+  body {
+    padding: 12px;
+  }
+  .card {
+    padding: 28px 18px 38px 18px;
+    border-radius: 40px 20px 44px 20px;
+  }
+  h1 {
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .subtitle {
+    font-size: 13px;
+    padding: 8px 16px;
+    margin-bottom: 30px;
+  }
+  .btn {
+    padding: 12px 24px;
+    font-size: 17px;
+    letter-spacing: 2px;
+    min-width: 170px;
+  }
+  .card .seal-mark {
+    width: 38px;
+    height: 38px;
+    left: 12px;
+    top: 18px;
+  }
+  .colophon {
+    font-size: 9px;
+    right: 10px;
+    top: 20px;
+  }
+  .inscription {
+    font-size: 9px;
+    bottom: 14px;
+    left: 16px;
+  }
+  .card .plum-branch {
+    width: 50px;
+    height: 50px;
+    bottom: 6px;
+    right: 8px;
+  }
+  .bg-poem {
+    font-size: 8px;
+    opacity: 0.18;
+  }
+}
+
+/* 大屏手机或折叠屏舒适区间 */
+@media (min-width: 600px) {
+  .card {
+    max-width: 540px;
+  }
+  h1 {
+    font-size: 32px;
+  }
+  .subtitle {
+    font-size: 16px;
+  }
+}
+
+/* 轻柔波动，增加灵动感 */
 @keyframes slowDrift {
   0% { background-position: 0% 0%; }
   100% { background-position: 1% 1%; }
 }
+body::before {
+  animation: slowDrift 28s infinite alternate ease-in-out;
+}
+
+/* 保证微信内字体优雅 */
 </style>
 </head>
-
 <body>
 
 <div class="card">
   <div class="seal-mark"></div>
+  <div class="colophon">月照花林</div>
+  <div class="inscription">· 张若虚 意 ·</div>
+  <div class="plum-branch"></div>
+  
   <h1>🌙 春江花月夜 · 微慕课评价</h1>
   <div class="subtitle">
     江流宛转绕芳甸，月照花林皆似霰<br>
     感谢您体验本次课程，恳请留下宝贵评价
   </div>
-  <a href="https://wj.qq.com/s2/26225508/6b23/" class="btn" target="_blank">进入评价</a>
+  
+  <a href="https://wj.qq.com/s2/26225508/6b23/" class="btn" target="_blank">📜 进入评价</a>
 </div>
 
-<div class="bg-poem">春江潮水连海平 海上明月共潮生</div>
-
+<div class="bg-poem">春江潮水连海平 海上明月共潮生 滟滟随波千万里 何处春江无月明</div>
 </body>
 </html>
